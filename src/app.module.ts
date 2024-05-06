@@ -17,6 +17,7 @@ import { UsersModule } from './users/users.module';
       entities: [`${__dirname}/users/entities/**/*.entity.{ts,js}`],
       synchronize: false,
     }),
+
     UsersModule,
     AuthModule,
   ],

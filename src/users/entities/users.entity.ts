@@ -37,14 +37,14 @@ export class Users {
 
   @Column('varchar', {
     length: 255,
-    nullable: true,
+    nullable: false,
   })
-  password?: string;
+  password: string;
 
   @Column('boolean', {
     default: true,
   })
-  isActive: boolean;
+  isActive?: boolean;
 
   @CreateDateColumn({
     type: 'timestamp',
@@ -64,5 +64,5 @@ export class Users {
   deletedAt?: Date;
 
   @OneToMany(() => Inscripcions, (inscripcions) => inscripcions.user)
-  inscripcions: Inscripcions[];
+  inscripcions?: Inscripcions[];
 }

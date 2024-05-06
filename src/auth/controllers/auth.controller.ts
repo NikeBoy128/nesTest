@@ -16,7 +16,6 @@ export class AuthController {
   async sigIn(
     @Body() payload: SignInRequestDto,
   ): Promise<AuthTokenResponseDto> {
-    console.log('payload', payload);
     return this.autUseCase.sigIn(payload);
   }
 }
