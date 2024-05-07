@@ -7,6 +7,10 @@ import { PasswordService } from 'src/auth/services/password.service';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { JwtService } from '@nestjs/jwt';
 import { UserQuestionsRepository } from './repositories/userQuestions.repository';
+import { PlansController } from './controllers/plans.controller';
+import { PlansRepository } from './repositories/plans.repository';
+import { CrudPlansUseCase } from './useCase/curdPlanUseCase.useCase';
+import { CrudPlanService } from './services/crudPlan.service';
 @Module({
   imports: [],
   providers: [
@@ -17,7 +21,11 @@ import { UserQuestionsRepository } from './repositories/userQuestions.repository
     AuthGuard,
     JwtService,
     UserQuestionsRepository,
+    PlansRepository,
+    CrudUsersService,
+    CrudPlansUseCase,
+    CrudPlanService,
   ],
-  controllers: [UserController],
+  controllers: [UserController, PlansController],
 })
 export class UsersModule {}

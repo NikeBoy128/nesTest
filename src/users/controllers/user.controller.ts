@@ -40,7 +40,7 @@ export class UserController {
     };
   }
 
-  @Get('/getQuestionsByUserId:email')
+  @Get('/getquestionsbyemail:email')
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
   async getQuestionsByUserId(@Param('email') email: string) {

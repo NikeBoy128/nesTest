@@ -17,6 +17,11 @@ export class Plans {
   })
   price: string;
 
+  @Column('varchar', {
+    length: 255,
+    nullable: false,
+  })
+  description: string;
   @OneToMany(() => Inscripcions, (inscripcions) => inscripcions.plan)
   inscripcions?: Inscripcions[];
 
