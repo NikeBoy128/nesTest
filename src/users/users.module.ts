@@ -6,6 +6,7 @@ import { CrudUserUseCase } from './useCase/crudUserUseCase.useCase';
 import { PasswordService } from 'src/auth/services/password.service';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { JwtService } from '@nestjs/jwt';
+import { UserQuestionsRepository } from './repositories/userQuestions.repository';
 @Module({
   imports: [],
   providers: [
@@ -15,6 +16,7 @@ import { JwtService } from '@nestjs/jwt';
     PasswordService,
     AuthGuard,
     JwtService,
+    UserQuestionsRepository,
   ],
   controllers: [UserController],
 })

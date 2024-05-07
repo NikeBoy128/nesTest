@@ -1,4 +1,12 @@
-import { Body, Controller, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { CrudUserUseCase } from '../useCase/crudUserUseCase.useCase';
 import {
   ApiBearerAuth,
@@ -29,6 +37,17 @@ export class UserController {
       message: CREATEDMESSAGE,
       codeStatus: HttpStatus.CREATED,
       rowId: rowId,
+    };
+  }
+
+  @Get('/getQuestionsByUserId:email')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  async getQuestionsByUserId(@Param('email') email: string) {
+    const data = await this.crudUserUseCase.getQuestionsByUserId(email);
+
+    return {
+      data,
     };
   }
 }

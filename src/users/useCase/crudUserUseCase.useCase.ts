@@ -27,4 +27,11 @@ export class CrudUserUseCase {
 
     return newUser.id;
   }
+
+  async getQuestionsByUserId(email: string) {
+    const user = await this.crudUserService.findUserByEmail(email);
+    const questions = await this.crudUserService.getQuestionsByUserId(user.id);
+
+    return questions;
+  }
 }

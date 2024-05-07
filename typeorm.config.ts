@@ -1,9 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { config } = require('dotenv');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { DataSource } = require('typeorm');
 
 config();
+
 module.exports = new DataSource({
   type: process.env.DB_TYPE,
   host: process.env.DB_HOST,

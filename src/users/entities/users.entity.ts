@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Inscripcions } from './inscriptions.entity';
+import { UserQuestions } from './userQuestions.entity';
 
 @Entity('Users')
 export class Users {
@@ -65,4 +66,7 @@ export class Users {
 
   @OneToMany(() => Inscripcions, (inscripcions) => inscripcions.user)
   inscripcions?: Inscripcions[];
+
+  @OneToMany(() => UserQuestions, (userQuestions) => userQuestions.user)
+  userQuestions?: UserQuestions[];
 }
