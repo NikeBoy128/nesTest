@@ -3,12 +3,14 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Inscripcions } from './inscriptions.entity';
 import { UserQuestions } from './userQuestions.entity';
+import { Role } from './role.entity';
 
 @Entity('Users')
 export class Users {
@@ -36,6 +38,8 @@ export class Users {
   })
   email: string;
 
+  @Column({ type: 'bigint', nullable: false })
+  roleId: number;
   @Column('varchar', {
     length: 255,
     nullable: false,
@@ -69,4 +73,7 @@ export class Users {
 
   @OneToMany(() => UserQuestions, (userQuestions) => userQuestions.user)
   userQuestions?: UserQuestions[];
+
+  @ManyToOne(() => Role, (role) => role.users)
+  role?: Role;
 }

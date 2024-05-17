@@ -19,6 +19,7 @@ export class CrudUserUseCase {
       avatarUrl: userDto.avatarUrl,
       email: userDto.email,
       password: userDto.password,
+      roleId: userDto.roleId,
     };
 
     newUser.password = await this.passwordService.hash(newUser.password);

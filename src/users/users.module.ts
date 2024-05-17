@@ -11,6 +11,8 @@ import { PlansController } from './controllers/plans.controller';
 import { PlansRepository } from './repositories/plans.repository';
 import { CrudPlansUseCase } from './useCase/curdPlanUseCase.useCase';
 import { CrudPlanService } from './services/crudPlan.service';
+import { GetAllUsersPaginationService } from './services/getAllUsersPagination.service';
+import { getAllUsersUseCase } from './useCase/getAllUsers.useCase';
 @Module({
   imports: [],
   providers: [
@@ -25,6 +27,8 @@ import { CrudPlanService } from './services/crudPlan.service';
     CrudUsersService,
     CrudPlansUseCase,
     CrudPlanService,
+    GetAllUsersPaginationService,
+    getAllUsersUseCase,
   ],
   controllers: [UserController, PlansController],
 })

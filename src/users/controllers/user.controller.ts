@@ -5,6 +5,7 @@ import {
   HttpStatus,
   Param,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { CrudUserUseCase } from '../useCase/crudUserUseCase.useCase';
@@ -15,18 +16,24 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { CREATEDMESSAGE, CreatedResponseDto } from '../messages/globalConst';
-import { CreateOrUpdateUserDto } from '../dto/user.dto';
+import {
+  CreateOrUpdateUserDto,
+  ParamsUsersWhithPagination,
+} from '../dto/user.dto';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { getAllUsersUseCase } from '../useCase/getAllUsers.useCase';
 
 @Controller('user')
 @ApiTags('User')
 export class UserController {
-  constructor(private readonly crudUserUseCase: CrudUserUseCase) {}
+  constructor(
+    private readonly crudUserUseCase: CrudUserUseCase,
+    private readonly getAllUsersPaginationUseCase: getAllUsersUseCase,
+  ) {}
 
   @Post('/create')
   @ApiOkResponse({ type: CreatedResponseDto })
   @ApiBearerAuth()
-  @UseGuards(AuthGuard)
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   async create(
     @Body() userDto: CreateOrUpdateUserDto,
@@ -39,7 +46,15 @@ export class UserController {
       rowId: rowId,
     };
   }
-
+  @Get('/users-whit-pagination')
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  async getAllUsersPagination(@Query() params: ParamsUsersWhithPagination) {
+    const data = await this.getAllUsersPaginationUseCase.run(params);
+    return {
+      data,
+    };
+  }
   @Get('/getquestionsbyemail:email')
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
