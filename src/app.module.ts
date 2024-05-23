@@ -9,7 +9,7 @@ import { UsersModule } from './users/users.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mariadb',
-      host: '127.0.0.1',
+      host: '192.168.1.106',
       port: 3306,
       username: 'harold',
       password: 'admin',
