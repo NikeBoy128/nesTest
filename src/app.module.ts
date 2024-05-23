@@ -8,12 +8,12 @@ import { UsersModule } from './users/users.module';
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'mariadb',
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT),
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
+      type: 'mysql',
+      host: 'db',
+      port: 3307,
+      username: 'harold',
+      password: 'admin',
+      database: 'itp',
       entities: [`${__dirname}/users/entities/**/*.entity.{ts,js}`],
       synchronize: false,
     }),
