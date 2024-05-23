@@ -9,11 +9,11 @@ import { UsersModule } from './users/users.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'db',
+      host: 'mysql-gym',
       port: 3307,
       username: 'harold',
       password: 'admin',
-      database: 'itp',
+      database: 'gym',
       entities: [`${__dirname}/users/entities/**/*.entity.{ts,js}`],
       synchronize: false,
     }),

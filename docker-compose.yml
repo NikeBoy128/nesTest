@@ -5,6 +5,7 @@ services:
     ports:
       - '3000:3000'
   db:
+    container_name: mysql-gym
     image: mysql:5.7
     restart: always
     environment:
