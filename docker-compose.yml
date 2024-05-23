@@ -4,19 +4,5 @@ services:
     build: .
     ports:
       - '3000:3000'
-  db:
-    container_name: mysql-gym
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: itp
-      MYSQL_USER: harold
-      MYSQL_PASSWORD: admin
-    ports:
-      - 3307:3306
     volumes:
-      - db_data:/var/lib/mysql
-
-volumes:
-  db_data:
+      - .:/app

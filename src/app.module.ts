@@ -8,12 +8,12 @@ import { UsersModule } from './users/users.module';
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'mysql-gym',
-      port: 3307,
+      type: 'mariadb',
+      host: '127.0.0.1',
+      port: 3306,
       username: 'harold',
       password: 'admin',
-      database: 'gym',
+      database: 'test',
       entities: [`${__dirname}/users/entities/**/*.entity.{ts,js}`],
       synchronize: false,
     }),
