@@ -9,9 +9,9 @@ import { UsersModule } from './users/users.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mariadb',
-      host: '192.168.1.106',
+      host: '10.10.10.3',
       port: 3306,
-      username: 'harold',
+      username: 'harold23',
       password: 'admin',
       database: 'test',
       entities: [`${__dirname}/users/entities/**/*.entity.{ts,js}`],
