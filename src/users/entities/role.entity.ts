@@ -4,7 +4,7 @@ import { Users } from './users.entity';
 @Entity('Role')
 export class Role {
   @PrimaryGeneratedColumn({ type: 'bigint' })
-  id?: bigint;
+  id?: number;
 
   @Column({ type: 'varchar', length: 255 })
   name: string;

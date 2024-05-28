@@ -13,6 +13,10 @@ import { CrudPlansUseCase } from './useCase/curdPlanUseCase.useCase';
 import { CrudPlanService } from './services/crudPlan.service';
 import { GetAllUsersPaginationService } from './services/getAllUsersPagination.service';
 import { getAllUsersUseCase } from './useCase/getAllUsers.useCase';
+import { CrudRoleServiceService } from './services/crudRoleService.service';
+import { RoleRepository } from './repositories/role.repository';
+import { CrudRolesUseCase } from './useCase/crudRolesUseCase';
+import { RoleController } from './controllers/role.controller';
 @Module({
   imports: [],
   providers: [
@@ -29,7 +33,10 @@ import { getAllUsersUseCase } from './useCase/getAllUsers.useCase';
     CrudPlanService,
     GetAllUsersPaginationService,
     getAllUsersUseCase,
+    CrudRoleServiceService,
+    RoleRepository,
+    CrudRolesUseCase,
   ],
-  controllers: [UserController, PlansController],
+  controllers: [UserController, PlansController, RoleController],
 })
 export class UsersModule {}

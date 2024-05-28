@@ -47,8 +47,6 @@ export class UserController {
     };
   }
   @Get('/users-whit-pagination')
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard)
   async getAllUsersPagination(@Query() params: ParamsUsersWhithPagination) {
     const data = await this.getAllUsersPaginationUseCase.run(params);
     return {
