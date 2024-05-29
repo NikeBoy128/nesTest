@@ -13,9 +13,15 @@ export class CrudPlansUseCase {
       name: planDto.name,
       price: planDto.price,
       description: planDto.description,
+      image: planDto.image,
     };
 
     const rowId = await this.crudPlanService.create(plan);
     return rowId;
+  }
+
+  async getPlanes() {
+    const planes = await this.crudPlanService.getPlanes();
+    return planes;
   }
 }

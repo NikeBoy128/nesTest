@@ -22,6 +22,12 @@ export class Plans {
     nullable: false,
   })
   description: string;
+
+  @Column('varchar', {
+    length: 500,
+    nullable: true,
+  })
+  image: string;
   @OneToMany(() => Inscripcions, (inscripcions) => inscripcions.plan)
   inscripcions?: Inscripcions[];
 

@@ -10,4 +10,9 @@ export class CrudPlanService {
     const rowId = await this.plansRepository.save(plan);
     return rowId.id;
   }
+
+  async getPlanes() {
+    const planes = await this.plansRepository.find();
+    return planes;
+  }
 }

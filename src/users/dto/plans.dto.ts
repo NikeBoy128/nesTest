@@ -28,4 +28,11 @@ export class CreateOrUpdatePlanDto {
     example: 'Plan description',
   })
   description: string;
+
+  @ApiProperty({
+    type: 'string',
+    required: false,
+    example: 'Plan image',
+  })
+  image: string;
 }

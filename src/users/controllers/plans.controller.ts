@@ -1,4 +1,11 @@
-import { Body, Controller, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { CrudPlansUseCase } from '../useCase/curdPlanUseCase.useCase';
 import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CREATEDMESSAGE, CreatedResponseDto } from '../messages/globalConst';
@@ -22,6 +29,15 @@ export class PlansController {
       message: CREATEDMESSAGE,
       codeStatus: HttpStatus.CREATED,
       rowId: rowId,
+    };
+  }
+
+  @Get('/')
+  @ApiOkResponse({ type: CreatedResponseDto })
+  async getPlans() {
+    const plans = await this.plansUseCase.getPlanes();
+    return {
+      data: plans,
     };
   }
 }

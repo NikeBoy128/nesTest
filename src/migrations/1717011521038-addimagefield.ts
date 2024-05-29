@@ -1,12 +1,12 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class AdTableRole1715961619943 implements MigrationInterface {
-    name = 'AdTableRole1715961619943'
+export class Addimagefield1717011521038 implements MigrationInterface {
+    name = 'Addimagefield1717011521038'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE \`Benefits\` (\`id\` bigint NOT NULL AUTO_INCREMENT, \`description\` varchar(100) NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`PlansBenefits\` (\`id\` bigint NOT NULL AUTO_INCREMENT, \`planId\` bigint NOT NULL, \`benefitId\` bigint NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
-        await queryRunner.query(`CREATE TABLE \`Plans\` (\`id\` bigint NOT NULL AUTO_INCREMENT, \`name\` varchar(100) NOT NULL, \`price\` varchar(100) NOT NULL, \`description\` varchar(255) NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
+        await queryRunner.query(`CREATE TABLE \`Plans\` (\`id\` bigint NOT NULL AUTO_INCREMENT, \`name\` varchar(100) NOT NULL, \`price\` varchar(100) NOT NULL, \`description\` varchar(255) NOT NULL, \`image\` varchar(500) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`Inscripcions\` (\`id\` bigint NOT NULL AUTO_INCREMENT, \`userId\` bigint NOT NULL, \`planId\` bigint NOT NULL, \`registerDate\` timestamp NULL, \`createdAt\` timestamp NULL, \`updatedAt\` timestamp NULL, \`deletedAt\` timestamp NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`Questions\` (\`id\` bigint NOT NULL AUTO_INCREMENT, \`description\` varchar(255) NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
         await queryRunner.query(`CREATE TABLE \`UserQuestions\` (\`id\` bigint NOT NULL AUTO_INCREMENT, \`userId\` bigint NOT NULL, \`questionId\` bigint NOT NULL, \`answer\` varchar(255) NOT NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
