@@ -12,6 +12,15 @@ export class CrudUsersService {
   ) {}
 
   async create(user: Users): Promise<string | number> {
+    const findUser = await this.userRepository.findOne({
+      where: { email: user.email },
+    });
+    if (findUser) {
+      throw new HttpException(
+        'Ya existe un usuario con el correo electronico proporcionado',
+        HttpStatus.CONFLICT,
+      );
+    }
     const newUser = await this.userRepository.save(user);
     return newUser.id;
   }
