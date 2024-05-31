@@ -45,4 +45,8 @@ export class CrudUsersService {
 
     return user;
   }
+
+  async delete(id: number) {
+    await this.userRepository.softDelete(id);
+  }
 }

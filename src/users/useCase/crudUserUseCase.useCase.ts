@@ -35,4 +35,8 @@ export class CrudUserUseCase {
 
     return questions;
   }
+
+  async delete(id: number) {
+    await this.crudUserService.delete(id);
+  }
 }

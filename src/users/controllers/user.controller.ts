@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpStatus,
   Param,
@@ -15,7 +16,12 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { CREATEDMESSAGE, CreatedResponseDto } from '../messages/globalConst';
+import {
+  CREATEDMESSAGE,
+  CreatedResponseDto,
+  DELETEDMESSAGE,
+  DeletedResponseDto,
+} from '../messages/globalConst';
 import {
   CreateOrUpdateUserDto,
   ParamsUsersWhithPagination,
@@ -61,6 +67,15 @@ export class UserController {
 
     return {
       data,
+    };
+  }
+
+  @Delete('/delete:id')
+  async deleteUser(@Param('id') id: number): Promise<DeletedResponseDto> {
+    await this.crudUserUseCase.delete(id);
+    return {
+      message: DELETEDMESSAGE,
+      codeStatus: HttpStatus.OK,
     };
   }
 }
