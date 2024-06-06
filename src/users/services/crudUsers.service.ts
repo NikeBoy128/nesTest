@@ -49,4 +49,8 @@ export class CrudUsersService {
   async delete(id: number) {
     await this.userRepository.softDelete(id);
   }
+
+  async update(user: Users) {
+    await this.userRepository.update(user.id, user);
+  }
 }

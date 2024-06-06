@@ -5,6 +5,7 @@ import {
   Get,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Query,
   UseGuards,
@@ -21,10 +22,13 @@ import {
   CreatedResponseDto,
   DELETEDMESSAGE,
   DeletedResponseDto,
+  UPDATEDMESSAGE,
+  UpdatedResponseDto,
 } from '../messages/globalConst';
 import {
   CreateOrUpdateUserDto,
   ParamsUsersWhithPagination,
+  paramsInscripcionsWhithPagination,
 } from '../dto/user.dto';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { getAllUsersUseCase } from '../useCase/getAllUsers.useCase';
@@ -59,6 +63,19 @@ export class UserController {
       data,
     };
   }
+
+  @Patch('/:id')
+  @ApiOkResponse({ type: UpdatedResponseDto })
+  async update(
+    @Body() user: CreateOrUpdateUserDto,
+  ): Promise<UpdatedResponseDto> {
+    await this.crudUserUseCase.update(user);
+
+    return {
+      message: UPDATEDMESSAGE,
+      codeStatus: HttpStatus.OK,
+    };
+  }
   @Get('/getquestionsbyemail:email')
   @ApiBearerAuth()
   @UseGuards(AuthGuard)
@@ -76,6 +93,17 @@ export class UserController {
     return {
       message: DELETEDMESSAGE,
       codeStatus: HttpStatus.OK,
+    };
+  }
+
+  @Get('/inscripcions-whit-pagination')
+  async getAllInscripcionsPagination(
+    @Query() params: paramsInscripcionsWhithPagination,
+  ) {
+    const data =
+      await this.getAllUsersPaginationUseCase.runInscripcions(params);
+    return {
+      data,
     };
   }
 }

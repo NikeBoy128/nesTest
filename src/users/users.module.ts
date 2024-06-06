@@ -17,6 +17,10 @@ import { CrudRoleServiceService } from './services/crudRoleService.service';
 import { RoleRepository } from './repositories/role.repository';
 import { CrudRolesUseCase } from './useCase/crudRolesUseCase';
 import { RoleController } from './controllers/role.controller';
+import { CrudPlansBenefitsService } from './services/crudplansbenefits.service';
+import { BenefitsRepository } from './repositories/benefits.repository';
+import { PlansBenefitsRepository } from './repositories/plansBenefits.repository';
+import { InscripcionsRepository } from './repositories/inscripcions.repository';
 @Module({
   imports: [],
   providers: [
@@ -36,6 +40,10 @@ import { RoleController } from './controllers/role.controller';
     CrudRoleServiceService,
     RoleRepository,
     CrudRolesUseCase,
+    CrudPlansBenefitsService,
+    BenefitsRepository,
+    PlansBenefitsRepository,
+    InscripcionsRepository,
   ],
   controllers: [UserController, PlansController, RoleController],
 })

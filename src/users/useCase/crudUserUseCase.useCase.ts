@@ -28,6 +28,23 @@ export class CrudUserUseCase {
 
     return newUser.id;
   }
+  async update(userDto: CreateOrUpdateUserDto) {
+    const user: Users = {
+      id: userDto.id,
+      name: userDto.name,
+      lastName: userDto.lastName,
+      avatarUrl: userDto.avatarUrl,
+      email: userDto.email,
+      password: userDto.password,
+      roleId: userDto.roleId,
+    };
+
+    if (user.password) {
+      user.password = await this.passwordService.hash(user.password);
+    }
+
+    await this.crudUserService.update(user);
+  }
 
   async getQuestionsByUserId(email: string) {
     const user = await this.crudUserService.findUserByEmail(email);

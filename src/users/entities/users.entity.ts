@@ -42,9 +42,9 @@ export class Users {
   roleId: number;
   @Column('varchar', {
     length: 255,
-    nullable: false,
+    nullable: true,
   })
-  password: string;
+  password?: string;
 
   @Column('boolean', {
     default: true,

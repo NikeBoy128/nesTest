@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { GetAllUsersPaginationService } from '../services/getAllUsersPagination.service';
-import { ParamsUsersWhithPagination } from '../dto/user.dto';
+import {
+  ParamsUsersWhithPagination,
+  paramsInscripcionsWhithPagination,
+} from '../dto/user.dto';
 
 @Injectable()
 export class getAllUsersUseCase {
@@ -10,5 +13,9 @@ export class getAllUsersUseCase {
 
   async run(params: ParamsUsersWhithPagination) {
     return this.getAllUsersPaginationService.run(params);
+  }
+
+  async runInscripcions(params: paramsInscripcionsWhithPagination) {
+    return this.getAllUsersPaginationService.runInscripcions(params);
   }
 }

@@ -36,3 +36,18 @@ export class CreateOrUpdatePlanDto {
   })
   image: string;
 }
+export class AddBenefitToPlanDto {
+  @ApiProperty({
+    type: 'number',
+    required: true,
+    example: 1,
+  })
+  planId: number;
+
+  @ApiProperty({
+    type: 'number',
+    required: true,
+    example: 1,
+  })
+  benefitId: number;
+}

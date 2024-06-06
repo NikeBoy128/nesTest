@@ -54,11 +54,12 @@ export class CreateOrUpdateUserDto {
 
   @ApiProperty({
     type: 'string',
-    required: true,
+    required: false,
     example: 'password',
   })
   @IsString()
-  password: string;
+  @IsOptional()
+  password?: string;
 }
 
 export class ParamsUsersWhithPagination extends ParamsPaginationDto {
@@ -69,4 +70,13 @@ export class ParamsUsersWhithPagination extends ParamsPaginationDto {
   })
   @IsOptional()
   roleId?: number;
+}
+export class paramsInscripcionsWhithPagination extends ParamsPaginationDto {
+  @ApiProperty({
+    type: Number,
+    example: '1',
+    required: false,
+  })
+  @IsOptional()
+  planId?: number;
 }
