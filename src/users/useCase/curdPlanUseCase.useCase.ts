@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CrudPlanService } from '../services/crudPlan.service';
-import { AddBenefitToPlanDto, CreateOrUpdatePlanDto } from '../dto/plans.dto';
+import {
+  AddBenefitToPlanDto,
+  CreateOrUpdatePlanDto,
+  deleteBenefitFromPlanDto,
+} from '../dto/plans.dto';
 import { Plans } from '../entities/plans.entity';
 import { PlansBenefits } from '../entities/plansBenefits.entity';
 import { CrudPlansBenefitsService } from '../services/crudplansbenefits.service';
@@ -56,7 +60,11 @@ export class CrudPlansUseCase {
     return benefitswhitStatus;
   }
 
-  async deleteBenefitFromPlan(id: number) {
-    await this.crudPlansBenefitsService.delete(id);
+  async deleteBenefitFromPlan(param: deleteBenefitFromPlanDto) {
+    const planBenefitId = await this.crudPlansBenefitsService.findOne(
+      param.planId,
+      param.benefitId,
+    );
+    await this.crudPlansBenefitsService.delete(planBenefitId.id);
   }
 }

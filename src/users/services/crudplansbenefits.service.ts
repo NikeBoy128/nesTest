@@ -31,4 +31,11 @@ export class CrudPlansBenefitsService {
   async delete(id: number) {
     await this.crudPlansBenefits.delete(id);
   }
+
+  async findOne(planId: number, benefitId: number) {
+    const plansBenefits = await this.crudPlansBenefits.findOne({
+      where: { planId, benefitId },
+    });
+    return plansBenefits;
+  }
 }

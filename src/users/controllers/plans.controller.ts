@@ -6,6 +6,7 @@ import {
   HttpStatus,
   Param,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { CrudPlansUseCase } from '../useCase/curdPlanUseCase.useCase';
@@ -17,7 +18,11 @@ import {
   DeletedResponseDto,
 } from '../messages/globalConst';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
-import { AddBenefitToPlanDto, CreateOrUpdatePlanDto } from '../dto/plans.dto';
+import {
+  AddBenefitToPlanDto,
+  CreateOrUpdatePlanDto,
+  deleteBenefitFromPlanDto,
+} from '../dto/plans.dto';
 
 @Controller('plans')
 @ApiTags('Plans')
@@ -69,9 +74,11 @@ export class PlansController {
     };
   }
 
-  @Delete('/benefits/:id')
-  async deleteBenefit(@Param('id') id: number): Promise<DeletedResponseDto> {
-    await this.plansUseCase.deleteBenefitFromPlan(id);
+  @Delete('/benefits')
+  async deleteBenefit(
+    @Query() param: deleteBenefitFromPlanDto,
+  ): Promise<DeletedResponseDto> {
+    await this.plansUseCase.deleteBenefitFromPlan(param);
     return {
       message: DELETEDMESSAGE,
       codeStatus: HttpStatus.OK,

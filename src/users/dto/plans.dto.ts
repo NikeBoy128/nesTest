@@ -51,3 +51,18 @@ export class AddBenefitToPlanDto {
   })
   benefitId: number;
 }
+export class deleteBenefitFromPlanDto {
+  @ApiProperty({
+    type: 'number',
+    required: true,
+    example: 1,
+  })
+  planId: number;
+
+  @ApiProperty({
+    type: 'number',
+    required: true,
+    example: 1,
+  })
+  benefitId: number;
+}
