@@ -3,12 +3,15 @@ import { UserRepository } from '../repositories/user.repository';
 import { Users } from '../entities/users.entity';
 import { UserQuestionsRepository } from '../repositories/userQuestions.repository';
 import { UserQuestions } from '../entities/userQuestions.entity';
+import { InscripcionsRepository } from '../repositories/inscripcions.repository';
+import { Inscripcions } from '../entities/inscriptions.entity';
 
 @Injectable()
 export class CrudUsersService {
   constructor(
     private readonly userRepository: UserRepository,
     private readonly userQuestionsRepository: UserQuestionsRepository,
+    private readonly inscripcionsRepository: InscripcionsRepository,
   ) {}
 
   async create(user: Users): Promise<string | number> {
@@ -52,5 +55,22 @@ export class CrudUsersService {
 
   async update(user: Users) {
     await this.userRepository.update(user.id, user);
+  }
+
+  async saveInscription(inscription: Inscripcions): Promise<string | number> {
+    const finInscripcion = await this.inscripcionsRepository.findOne({
+      where: {
+        userId: inscription.userId,
+      },
+    });
+    if (finInscripcion) {
+      throw new HttpException(
+        'Ya existe una inscripcion vigente',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    const rowId = await this.inscripcionsRepository.save(inscription);
+
+    return rowId.id;
   }
 }

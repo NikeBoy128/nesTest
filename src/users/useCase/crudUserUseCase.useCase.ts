@@ -3,6 +3,8 @@ import { CrudUsersService } from '../services/crudUsers.service';
 import { CreateOrUpdateUserDto } from '../dto/user.dto';
 import { Users } from '../entities/users.entity';
 import { PasswordService } from 'src/auth/services/password.service';
+import { InscripcionDto } from '../dto/inscripcions.dto';
+import { Inscripcions } from '../entities/inscriptions.entity';
 
 @Injectable()
 export class CrudUserUseCase {
@@ -55,5 +57,19 @@ export class CrudUserUseCase {
 
   async delete(id: number) {
     await this.crudUserService.delete(id);
+  }
+
+  async createInscription(
+    inscriptionDto: InscripcionDto,
+  ): Promise<string | number> {
+    const row: Inscripcions = {
+      userId: inscriptionDto.userId,
+      planId: inscriptionDto.planId,
+      registerDate: new Date(),
+    };
+
+    const rowId = await this.crudUserService.saveInscription(row);
+
+    return rowId;
   }
 }

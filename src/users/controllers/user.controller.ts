@@ -32,6 +32,7 @@ import {
 } from '../dto/user.dto';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { getAllUsersUseCase } from '../useCase/getAllUsers.useCase';
+import { InscripcionDto } from '../dto/inscripcions.dto';
 
 @Controller('user')
 @ApiTags('User')
@@ -104,6 +105,20 @@ export class UserController {
       await this.getAllUsersPaginationUseCase.runInscripcions(params);
     return {
       data,
+    };
+  }
+
+  @Post('/create-inscription')
+  @ApiOkResponse({ type: CreatedResponseDto })
+  async createInscription(
+    @Body() inscriptionDto: InscripcionDto,
+  ): Promise<CreatedResponseDto> {
+    const rowId = await this.crudUserUseCase.createInscription(inscriptionDto);
+
+    return {
+      message: CREATEDMESSAGE,
+      codeStatus: HttpStatus.CREATED,
+      rowId: rowId,
     };
   }
 }
