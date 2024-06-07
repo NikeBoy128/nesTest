@@ -63,6 +63,7 @@ export class GetAllUsersPaginationService {
 
     inscripcionsQueryBuilder
       .innerJoinAndSelect('Inscripcions.user', 'Users')
+      .innerJoinAndSelect('Inscripcions.plan', 'Plans')
       .orderBy('Inscripcions.createdAt', 'DESC')
       .skip(skip)
       .take(params.perPage)

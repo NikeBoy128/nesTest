@@ -84,4 +84,12 @@ export class PlansController {
       codeStatus: HttpStatus.OK,
     };
   }
+
+  @Get('/only-benefits/:planId')
+  async getBenefitsByPlanIdOnly(@Param('planId') planId: number) {
+    const benefits = await this.plansUseCase.getOnlyBenefits(planId);
+    return {
+      data: benefits,
+    };
+  }
 }

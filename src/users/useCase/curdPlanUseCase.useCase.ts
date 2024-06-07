@@ -67,4 +67,12 @@ export class CrudPlansUseCase {
     );
     await this.crudPlansBenefitsService.delete(planBenefitId.id);
   }
+
+  async getOnlyBenefits(id: number) {
+    const dataPlanes =
+      await this.crudPlansBenefitsService.getBenefitsByPlanId(id);
+    const benefits = dataPlanes.map((benefit) => benefit.benefit);
+
+    return benefits;
+  }
 }
