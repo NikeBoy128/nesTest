@@ -27,4 +27,4 @@ RUN npm run build
 EXPOSE 3001
 
 
-CMD ["pm2-runtime", "start", "app.js"]
+CMD ["pm2-runtime", "start", "dist/src/main.js"]
