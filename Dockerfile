@@ -13,6 +13,8 @@ RUN npm install
 RUN npm install bcrypt
 
 
+RUN npm install pm2 -g
+
 COPY . .
 
 
@@ -25,4 +27,4 @@ RUN npm run build
 EXPOSE 3001
 
 
-CMD ["npm", "run", "start:prod"]
+CMD ["pm2-runtime", "start", "app.js"]
